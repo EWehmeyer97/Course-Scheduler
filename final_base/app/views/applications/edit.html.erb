@@ -1,0 +1,12 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', current_student %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<h1>Editing Application</h1>
+
+<%= render 'form', application: @application %>
+
+<%= link_to 'Show Application', @application %>
+

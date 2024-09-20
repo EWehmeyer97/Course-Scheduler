@@ -1,0 +1,15 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', login_admin_path(current_admin) %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<br>
+<div class = "login">
+<h2>New Section</h2>
+
+<%= render 'form', section: @section %>
+</div>
+<br>
+
+

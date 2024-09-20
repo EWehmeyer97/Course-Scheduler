@@ -1,0 +1,85 @@
+
+<% @admin=Admin.find_by_id(current_admin)%>
+<% @section= Section.all %>
+<% @recommand= Recommand.all %>
+<table align="right">
+  <tr>
+    <td><a href="">My Profile</a></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<div class="container">
+<h1>Welcome <%=@admin.Title %> <%=@admin.Name %>!</h1>
+  <h2>Email: <%=@admin.Email %></h2>
+  <br>
+  <h2>Sections</h2>
+  <div>
+    <% @section.each do |s| %>
+      <h3><%= s.Course_num%> - <%=s.Section_num%> (<%=s.Section_semester%>)</h3>
+    <table class="min" id="Course_applied">
+      <tr>
+        <th>Name</th>
+        <th>Grade</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+            <% @apply = Application.where(section_id: s.id )%>
+            <% if @apply.count > 0 %>
+              <% @apply.each do |a|%>
+            <tr>
+                  <td><%=a.Student_name %></td>
+                  <td><%=a.Course_grade %></td>
+                  <td><%=a.Status %></td>
+                  <td>
+
+                    <%= form_for(a, remote:true,data: {confirm:"Sure?"}) do |a1| %>
+                      <%=a1.hidden_field :Status, :value => 'Approved'  %>
+                      <%=a1.hidden_field :Student_id, :value => '/login_admin'  %>
+                      <%=a1.submit "Approve" %>
+                    <%end %>
+                    <%= form_for(a, remote:true,data: {confirm:"Sure?"}) do |a2| %>
+                      <%=a2.hidden_field :Status, :value => 'Rejected' %>
+                      <%=a2.hidden_field :Student_id, :value => '/login_admin'  %>
+                      <%=a2.submit "Reject" %>
+                    <%end %>
+
+                  </td>
+                </tr>
+              <% end %>
+            <%end %>
+    </table>
+    <% end %>
+
+  </div>
+  <br>
+  <a href="sections/new"><button class = "big">Add Section</button></a>
+  <br>
+  <h2>Current Recommendations</h2>
+  <div>
+    <table class="min" id="Recommand_table">
+      <tr>
+        <th>Professor</th>
+        <th>Course</th>
+        <th>Grader Year</th>
+        <th>Student</th>
+        <th>Request</th>
+      </tr>
+      <% @recommand.each do |r| %>
+      <tr>
+        <td><%=r.Professer_id %></td>
+        <td><%=r.Course_num %></td>
+        <td><%=r.Grader_year %></td>
+        <td><%=r.Student_name %></td>
+        <td>
+          <%=r.Request_flag%>
+        </td>
+      </tr>
+      <% end %>
+
+    </table>
+  </div>
+  <br>
+    <%= link_to 'Edit Profile', edit_admin_path(current_admin) %>
+
+</div>
+

@@ -1,0 +1,25 @@
+<div style="padding-top: 100px" align="center">
+  <div class = "login">
+  <h2>Login</h2>
+  <%= form_tag sessions_path do %>
+      <div class="field">
+        <%= label_tag :Email %>
+        <%= text_field_tag  :Email, params[:email] %>
+      </div>
+    <div class="field">
+      <%= label_tag :Password %>
+     <%= text_field_tag  :password %>
+    </div>
+    <table align="right">
+      <tr>
+        <td><%= link_to 'Back', :back%></td>
+        <td>
+          <div action="actions">
+            <input type="submit" value="Login">
+          </div>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+	  </div>

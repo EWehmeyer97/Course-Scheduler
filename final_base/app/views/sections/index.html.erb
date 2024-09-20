@@ -1,0 +1,40 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', login_admin_path(current_admin) %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<p id="notice"><%= notice %></p>
+<h1>Sections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Section num</th>
+      <th>Course num</th>
+      <th>Section semester</th>
+      <th>Section time</th>
+      <th>Num of graders</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sections.each do |section| %>
+      <tr>
+        <td><%= section.Section_num %></td>
+        <td><%= section.Course_num %></td>
+        <td><%= section.Section_semester %></td>
+        <td><%= section.Section_time %></td>
+        <td><%= section.Num_of_graders %></td>
+        <td><%= link_to 'Show', section %></td>
+        <td><%= link_to 'Edit', edit_section_path(section) %></td>
+        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= button_to 'New Section', new_section_path %>

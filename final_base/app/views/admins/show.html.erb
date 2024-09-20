@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @admin.Email %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin.Name %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @admin.Password %>
+</p>
+
+<p>
+  <strong>Manage year:</strong>
+  <%= @admin.Manage_year %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @admin.Title %>
+</p>
+
+<%= link_to 'Edit Profile', edit_admin_path(@admin) %>
+<%#= link_to 'Back', admins_path %>
+<br>
+<%= link_to 'Back to Profile', login_admin_path(current_admin) %>
+<a href="/">log out</a>

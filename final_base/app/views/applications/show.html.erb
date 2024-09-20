@@ -1,0 +1,43 @@
+<table align="right">
+  <tr>
+
+    <td><%= link_to 'My Profile', current_student %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Student name:</strong>
+  <%= @application.Student_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @application.Email %>
+</p>
+
+<p>
+  <strong>Course num:</strong>
+  <%= @application.Course_num %>
+</p>
+
+<p>
+  <strong>Grader period:</strong>
+  <%= @application.Grader_period %>
+</p>
+
+<p>
+  <strong>Recommand letter:</strong>
+  <%= @application.Recommand_letter %>
+</p>
+
+<p>
+  <strong>Course grade:</strong>
+  <%= @application.Course_grade %>
+</p>
+
+
+<p>
+  <strong>Status:</strong>
+  <%= @application.Status %>
+</p>

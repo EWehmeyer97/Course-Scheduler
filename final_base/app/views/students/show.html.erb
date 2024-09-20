@@ -1,0 +1,62 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', @student %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<h1>Home Page for <%= @student.Name %></h1>
+<p id="notice"><%= notice %></p>
+<% @app = Application.all %>
+<p>
+  <strong>Email:</strong>
+  <%= @student.Email %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @student.Name %>
+</p>
+
+<p>
+  <strong>Graduate year:</strong>
+  <%= @student.Graduate_year %>
+</p>
+
+<p>
+  <strong>Major:</strong>
+  <%= @student.Major %>
+</p>
+<p>
+  <strong>Previous Applications</strong>
+  <table class="min">
+    <tr>
+      <th>Name</th>
+      <th>Course number</th>
+      <th>Grader period</th>
+      <th>Course grade</th>
+      <th>Status </th>
+      <th>Option</th>
+    </tr>
+    <% @app.each do |app| %>
+      <% if app.Student_id.to_s== @student.id.to_s%>
+        <tr>
+          <td><%=app.Student_name %></td>
+          <td>
+            <%@s=Section.find_by_id(app.section_id) %>
+            <%=@s.Course_num %>
+          </td>
+          <td><%= app.Grader_period%></td>
+          <td><%= app.Course_grade%></td>
+          <td><%= app.Status%></td>
+          <td><%= link_to 'Cancel', app, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+            <%= link_to 'Edit', edit_application_path(app) %>
+          </td>
+        </tr>
+      <%end %>
+    <% end %>
+  </table>
+</p>
+<a href = <%=new_application_path %>><button class = "big">New Application</button></a>
+<br>
+<%= link_to 'Edit Profile', edit_student_path(@student) %> <br>
+

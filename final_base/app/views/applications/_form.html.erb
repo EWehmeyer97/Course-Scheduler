@@ -1,0 +1,59 @@
+
+<% @student = Student.find_by_id(current_student) %>
+<% @section = Section.all %>
+
+<%= form_with(model: application, local: true) do |form| %>
+  <% if application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(application.errors.count, "error") %> prohibited this application from being saved:</h2>
+
+      <ul>
+      <% application.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Student_name %>
+    <%= form.text_field :Student_name ,id: :application_Student_name , value: current_student.Name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Student_id, 'Student id' %>
+    <%= form.text_field :Student_id ,id: :application_Student_id, value: current_student.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Email %>
+    <%= form.text_field :Email, id: :application_Email , value: current_student.Email%>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :section_id %>
+    <% options = options_from_collection_for_select(@section, 'id', 'Section_num') %>
+    <%= form.select 'section_id', options %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Grader_period %>
+    <%=form.select :Grader_period, ['SP2019', 'SU2019', 'AU2019', 'SP2020'], :prompt=> 'Select One'%>
+  </div>
+
+  <div class="field">
+    <%= form.label :Recommend_letter %>
+    <%= form.text_field :Recommand_letter, id: :application_Recommand_letter %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Course_grade %>
+    <%=form.select :Course_grade, ['A', 'A-', 'B+', 'B','B-', '<=C'], :prompt=> 'Select One'%>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

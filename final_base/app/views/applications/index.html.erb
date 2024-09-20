@@ -1,0 +1,53 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', current_student %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<p id="notice"><%= notice %></p>
+
+<h1>Applications</h1>
+
+<table class = "min">
+
+  <tbody>
+    <%if @applications.length >= 0 %>
+
+        <thead>
+          <tr>
+            <th>Student name</th>
+            <th>Email</th>
+            <th>Course num</th>
+            <th>Grader period</th>
+            <th>Recommand letter</th>
+            <th>Course grade</th>
+            <th>Status</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+    <% @applications.each do |application| %>
+
+      <tr>
+        <td><%= application.Student_name %></td>
+        <td><%= application.Email %></td>
+        <td><%= application.Course_num %></td>
+
+        <td><%= application.Grader_period %></td>
+        <td><%= application.Recommand_letter %></td>
+        <td><%= application.Course_grade %></td>
+        <td><%= application.Status %></td>
+        <td><%= link_to 'Show', application %></td>
+        <td><%= link_to 'Edit', edit_application_path(application) %></td>
+        <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+      <%else%>
+    <h3>You have no applications</h3>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<a href = <%=new_application_path %>><button class = "big">New Application</button></a>

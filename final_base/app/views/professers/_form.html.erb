@@ -1,0 +1,55 @@
+<%= form_with(model: professer, local: true) do |form| %>
+  <% if professer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(professer.errors.count, "error") %> prohibited this professor from being saved:</h2>
+
+      <ul>
+      <% professer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class = "login">
+  <div class="field">
+    <%= form.label :Email %>
+    <%= form.text_field :Email, id: :professer_Email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Name %>
+    <%= form.text_field :Name, id: :professer_Name %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :Password %>
+    <%= form.text_field :Password, id: :professer_Password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Favorite_color? %>
+    <%= form.text_field :password_digest, id: :professer_password_digest %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Course_number %>
+    <%= form.text_field :Course_num, id: :professer_Course_num %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Teaching_year %>
+    <%= form.text_field :Teaching_year, id: :professer_Teaching_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Title %>
+    <%= form.text_field :Title, id: :professer_Title %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  </div>
+<% end %>

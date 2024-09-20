@@ -1,0 +1,13 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', login_admin_path(current_admin) %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<br>
+<div class = "login">
+<h2>Editing Admin</h2>
+
+<%= render 'form', admin: @admin %>
+<%#= link_to 'Back', admins_path %>
+</div>

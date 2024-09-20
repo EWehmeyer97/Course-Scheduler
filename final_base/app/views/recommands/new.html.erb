@@ -1,0 +1,15 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', professer_path(current_professor) %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<br>
+<div class = "main">
+<h2>New Recommendation</h2>
+
+<%# render @professer_user %>
+<%= render 'form', recommand: @recommand %>
+</div>
+
+

@@ -1,0 +1,53 @@
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', professer_path(current_professor) %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<br>
+<p id="notice"><%= notice %></p>
+
+<h1>Recommendations</h1>
+
+<%# IF THERE ARE NO RECOMMENDATIONS DISPLAY A MESSAGE %>
+<table>
+  <%# COUNTER TO CHECK IF THERE ARE RECOMMENDATIONS TO DISPLAY %>
+  <% recommendations = 0 %>
+    <thead>
+      <tr>
+        <th>Professor</th>
+        <th>Request or Recommend</th>
+        <th>Student Name</th>
+        <th>Course #</th>
+        <th>Grader Year</th>
+        <th>Reason</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <%#NESTED FOR EACH LOOP FOR PROFESSORS AND CHECK IF THEY'RE EQUAL %>
+    <% @recommands.each do |recommand| %>
+        <tr>
+          <%if current_professor.Name == recommand.Professer_id %>
+            <td><%= recommand.Professer_id %></td>
+            <td><%= recommand.Request_flag %></td>
+            <td><%= recommand.Student_name %></td>
+            <td><%= recommand.Course_num %></td>
+            <td><%= recommand.Grader_year %></td>
+            <td><%= recommand.Reason %></td>
+            <td><%= link_to 'Show', recommand %></td>
+            <td><%= link_to 'Edit', edit_recommand_path(recommand) %></td>
+            <td><%= link_to 'Destroy', recommand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% recommendations += 1 %>
+          <% end %>
+        </tr>
+    <% end %>
+    <%if recommendations == 0 %>
+      <h3>You have no recommendations</h3>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recommendation', new_recommand_path %>

@@ -1,0 +1,59 @@
+<% @sections = Section.all %>
+<% @student = Student.all %>
+<%= form_with(model: recommand, local: true) do |form| %>
+  <% if recommand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recommand.errors.count, "error") %> prohibited this recommand from being saved:</h2>
+
+      <ul>
+      <% recommand.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "login">
+  <div class="field" id="prof_name">
+    <%= form.label :Professor %>
+    <%= form.text_field :Professer_id, id: :recommand_Professer_id, :value => current_professor.Name%>
+
+  </div>
+
+  <div class="field" id="recommend_type">
+    <%= form.label :Request_or_Recommendation? %>
+    <%=form.select :Request_flag, ['Recommend', 'Request'], :prompt=> 'Select One'%>
+  </div>
+
+  <div class="field">
+    <%= form.label :Student_name %>
+    <% options = options_from_collection_for_select(@student, 'Name', 'Name') %>
+    <%= form.select 'Student_name', options %>
+  </div>
+
+  <div class="field" id="sec_required">
+    <%= form.label :Section_Number %>
+    <% options = options_from_collection_for_select(@sections, 'id', 'Section_num') %>
+    <%= form.select :Section_num,  options, :prompt=> 'Select One'%>
+  </div>
+
+  <div class="field">
+    <%= form.label :Course_num %>
+    <%= form.text_field :Course_num, id: :Course_num %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Grader_year %>
+    <%=form.select :Grader_year, ['2019', '2020', '2021'], :prompt=> 'Select One'%>
+  </div>
+
+  <div class="field">
+    <%= form.label :Reason %>
+    <%= form.text_field :Reason, id: :recommand_Reason %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  </div>
+<% end %>

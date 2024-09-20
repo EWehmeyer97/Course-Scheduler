@@ -1,0 +1,71 @@
+
+<% @recommand= Recommand.all %>
+
+<table align="right">
+  <tr>
+    <td><%= link_to 'My Profile', professer_path(current_professor) %></td>
+    <td><a href="/"><button class = "big">Log Out</button></a></td>
+  </tr>
+</table>
+<p id="notice"><%= notice %></p>
+
+<h2>Hello <%= @professer.Name %>!</h2>
+
+<p>
+  <strong>Email:</strong>
+  <%= @professer.Email %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @professer.Name %>
+</p>
+
+
+
+<p>
+  <strong>Course Number:</strong>
+  <%= @professer.Course_num %>
+</p>
+
+<p>
+  <strong>Teaching year:</strong>
+  <%= @professer.Teaching_year %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @professer.Title %>
+</p>
+
+<p>
+  <strong>Previous Recommendations</strong>
+  <table class = "min">
+    <tr>
+      <th>Student name</th>
+      <th>Course</th>
+      <th>Grade year</th>
+      <th>Option</th>
+    </tr>
+    <%@recommand.each do |recommand| %>
+      <% if recommand.Professer_id.to_s==@professer.Name %>
+        <tr>
+          <td><%=recommand.Student_name %></td>
+          <td><%=recommand.Course_num %></td>
+          <td><%=recommand.Grader_year %></td>
+          <td><%= link_to 'Cancel',recommand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <%end%>
+    <%end %>
+  </table>
+</p>
+<a href = <%=new_recommand_path %>><button class = "big">Recommend Student</button></a>
+<br>
+<%= link_to 'Edit Profile', edit_professer_path(@professer) %>
+<%#= link_to 'Back', professers_path %>
+
+
+
+
+
+
+

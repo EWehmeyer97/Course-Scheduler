@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Professer_id: MyString
+  Request_flag: MyString
+  Student_name: MyString
+  Course_num: MyString
+  Grader_year: MyString
+  Reason: MyString
+
+two:
+  Professer_id: MyString
+  Request_flag: MyString
+  Student_name: MyString
+  Course_num: MyString
+  Grader_year: MyString
+  Reason: MyString
